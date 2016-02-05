@@ -2,13 +2,14 @@ angular
   .module('walletApp')
   .factory('Alerts', Alerts);
 
-Alerts.$inject = ['$timeout', '$rootScope', '$translate'];
+Alerts.$inject = ['$timeout', '$rootScope', '$translate', '$uibModal'];
 
-function Alerts($timeout, $rootScope, $translate) {
+function Alerts($timeout, $rootScope, $translate, $uibModal) {
   const service = {
     alerts          : [],
     close           : close,
     clear           : clear,
+    confirm         : confirm,
     displayInfo     : display.bind(null, 'info'),
     displaySuccess  : display.bind(null, 'success'),
     displayWarning  : display.bind(null, ''),
@@ -36,6 +37,18 @@ function Alerts($timeout, $rootScope, $translate) {
     alert.close = close.bind(null, alert, context);
     if (!keep) alert.timer = $timeout(() => alert.close(), 7000);
     context.push(alert);
+  }
+
+  function confirm(message) {
+    return $uibModal.open({
+      windowClass: 'bc-modal',
+      templateUrl: 'partials/confirm.jade',
+      controller: function ($scope, $uibModalInstance) {
+        $scope.message = message;
+        $scope.confirm = () => $uibModalInstance.close(true);
+        $scope.close = () => $uibModalInstance.close(false);
+      }
+    }).result;
   }
 
   function displayVerifiedEmail() {

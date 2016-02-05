@@ -1,6 +1,7 @@
 describe "AddressImportCtrl", ->
   scope = undefined
   Wallet = undefined
+  Alerts = undefined
 
   accounts = [{index: 0, label: "Spending", archived: false}]
 
@@ -13,6 +14,7 @@ describe "AddressImportCtrl", ->
   beforeEach ->
     angular.mock.inject ($injector, $rootScope, $controller, $compile) ->
       Wallet = $injector.get("Wallet")
+      Alerts = $injector.get("Alerts")
 
       Wallet.addAddressOrPrivateKey = (addressOrPrivateKey, bip38passphrase, success, error) ->
         success({address: "valid_import_address"})
@@ -22,6 +24,11 @@ describe "AddressImportCtrl", ->
       Wallet.my =
         wallet:
           keys: []
+        isValidAddress: (addr) -> addr == 'watch_only'
+        isValidPrivateKey: (priv) -> priv == 'valid_import_address'
+
+      Alerts.confirm = () ->
+        then: (f) -> f(true)
 
       scope = $rootScope.$new()
 
@@ -61,6 +68,20 @@ describe "AddressImportCtrl", ->
       scope.import()
       $timeout.flush()
       expect(scope.step).toBe(2)
+    )
+
+  describe "watch only", ->
+
+    beforeEach ->
+      scope.fields.addressOrPrivateKey = "watch_only"
+
+    it "should not go to step 2 when the user does not confirm", inject(($timeout) ->
+      spyOn(Alerts, 'confirm').and.returnValue(then: (f) -> f(false))
+      expect(scope.step).toBe(1)
+      scope.import()
+      $timeout.flush()
+      expect(scope.step).toBe(1)
+      expect(scope.status.busy).toEqual(false)
     )
 
   describe "validate and add", ->

@@ -1,0 +1,7 @@
+.modal-header
+  h3 {{::'CONTINUE' | translate}}?
+.modal-body
+  p(translate="{{ message }}")
+.modal-footer.pal.flex-end
+  button.button-muted.mrm(translate="CANCEL" ng-click="close()")
+  button.button-primary.mrm(translate="CONFIRM" ng-click="confirm()")
