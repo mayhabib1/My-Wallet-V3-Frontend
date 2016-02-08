@@ -3,7 +3,7 @@
     img(src="img/arrow-down.png")
     h3(translate="RECEIVE_BITCOIN")
   h5(translate="RECEIVE_BITCOIN_MESSAGE", ng-hide="focus")
-.modal-body
+.modal-body#receive
   form.form-horizontal.ph-form(role="form" name="requestForm" novalidate)
     .form-group.row.pbm(ng-show="numberOfActiveAccountsAndLegacyAddresses() > 1" ng-class="{'has-warning': fields.to.isWatchOnlyLegacyAddress}")
       label.pts.col-sm-3.col-xs-12(translate="RECEIVE_TO")
