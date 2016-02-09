@@ -224,6 +224,7 @@
   "PAIRING_CODE_EXPLAIN" : "Scan the code below with your iPhone or Android Blockchain Wallet App to quickly and easily connect to your wallet. Note that this only works with the V3 beta iPhone or Android app, not with the current store version.",
   "MOBILE" : "Mobile",
   "WATCH_ONLY" : "Watch Only",
+  "WATCH_ONLY_REQUEST_WARN": "You are about to receive to a watch-only address. You can only spend these funds if you have access to the private key.",
   "WARNING" : "Warning",
   "IMPORT_BITCOIN_ADDRESS" : "Import Existing Bitcoin Address",
   "IMPORT_BITCOIN_ADDRESS_SWEEP" : "Transfer Funds from Imported Address",
