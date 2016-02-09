@@ -694,18 +694,18 @@ function Wallet(   $http,   $window,   $timeout,  $location,  Alerts,   MyWallet
     switch (accountIndex) {
       case '':
         if (wallet.my.wallet.isUpgradedToHD) {
-          return wallet.my.wallet.hdwallet.balanceActiveAccounts + wallet.my.wallet.balanceSpendableActiveLegacy;
+          return wallet.my.wallet.hdwallet.balanceActiveAccounts + wallet.my.wallet.balanceActiveLegacy;
         } else {
-          return wallet.my.wallet.balanceSpendableActiveLegacy;
+          return wallet.my.wallet.balanceActiveLegacy;
         }
         break;
       case 'imported':
-        return wallet.my.wallet.balanceSpendableActiveLegacy;
+        return wallet.my.wallet.balanceActiveLegacy;
       case void 0:
         if (wallet.my.wallet.isUpgradedToHD) {
-          return wallet.my.wallet.hdwallet.balanceActiveAccounts + wallet.my.wallet.balanceSpendableActiveLegacy;
+          return wallet.my.wallet.hdwallet.balanceActiveAccounts + wallet.my.wallet.balanceActiveLegacy;
         } else {
-          return wallet.my.wallet.balanceSpendableActiveLegacy;
+          return wallet.my.wallet.balanceActiveLegacy;
         }
         break;
       default:
@@ -1092,7 +1092,7 @@ function Wallet(   $http,   $window,   $timeout,  $location,  Alerts,   MyWallet
 
   wallet.getTotalBalanceForActiveLegacyAddresses = () => {
     if (wallet.my.wallet == null) return;
-    return wallet.my.wallet.balanceSpendableActiveLegacy;
+    return wallet.my.wallet.balanceActiveLegacy;
   };
 
   wallet.setDefaultAccount = (account) => {
