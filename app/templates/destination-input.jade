@@ -19,16 +19,16 @@
       button#qr.btn.btn-default(
         type="button"
         ng-disabled="!browserWithCamera"
-        ng-class="{ 'border-rounded-right': accounts.length <= 1 }"
+        ng-class="{ 'border-rounded-right': destinations.length <= 1 }"
         ng-click="onRequestQr()")
         img(src="img/qr-code.png" alt="QR")
       button.btn.btn-default(
         type="button"
-        ng-show="accounts.length > 1"
+        ng-show="destinations.length > 1"
         uib-dropdown-toggle)
         span.caret
         span.sr-only Toggle Dropdown
       ul.uib-dropdown-menu.dropdown-menu-right.drop-menu
-        li(ng-repeat="account in accounts")
-          a(ng-click="setModel(account)" ng-disabled="account.index === model.index")
-            | {{ account.label }}
+        li(ng-repeat="dest in destinations")
+          a(ng-click="setModel(dest)")
+            label-origin(origin="dest" hide-balance="true")

@@ -7,6 +7,7 @@ angular.module('walletApp').directive('labelOrigin', (Wallet, currency) ->
       origin: '='
       fee: '='
       highlight: '='
+      hideBalance: '='
     }
     link: (scope, elem, attrs) ->
 

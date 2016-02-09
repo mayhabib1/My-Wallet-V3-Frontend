@@ -212,13 +212,6 @@
     padding: 0;
   }
 
-  .label {
-    color: $blue;
-    margin-bottom: 15px;
-    font-size: 14px;
-    font-weight: 400;
-  }
-
   .usd-amount, .btc-amount {
     border-bottom: 1px solid $ccc;
     display: flex;
@@ -315,7 +308,7 @@
     border-radius: 5px;
     height: 430px;
   }
-  .advanced-send-scroll { 
+  .advanced-send-scroll {
     padding: 0px;
     > div {
       max-height: 400px;

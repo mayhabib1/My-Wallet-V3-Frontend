@@ -2,9 +2,9 @@ angular
   .module('walletApp')
   .directive('destinationInput', destinationInput);
 
-destinationInput.$inject = ['$rootScope', '$timeout', 'Wallet'];
+destinationInput.$inject = ['$rootScope', '$timeout', 'Wallet', 'format'];
 
-function destinationInput($rootScope, $timeout, Wallet) {
+function destinationInput($rootScope, $timeout, Wallet, format) {
   const directive = {
     restrict: 'E',
     require: 'ngModel',
@@ -20,24 +20,18 @@ function destinationInput($rootScope, $timeout, Wallet) {
 
   function link(scope, elem, attrs, ctrl) {
     scope.browserWithCamera = $rootScope.browserWithCamera;
-    scope.accounts = Wallet.accounts().filter(a => a.active);
-
-    let format = (a, type) => ({
-      label     : a.label,
-      balance   : a.balance,
-      active    : a.active,
-      archived  : a.archived,
-      type      : type
-    });
+    scope.destinations = Wallet.accounts()
+                                .concat(Wallet.legacyAddresses())
+                                .filter(a => !a.archived)
+                                .map(format.destination);
 
     scope.setModel = (a) => {
-      scope.model = format(a, 'Accounts');
-      scope.model.index = a.index;
+      scope.model = a;
       $timeout(scope.change);
     };
 
     scope.clearModel = () => {
-      scope.model = format({}, 'External');
+      scope.model = { type: 'External' };
       scope.model.address = '';
       $timeout(scope.change);
     };
