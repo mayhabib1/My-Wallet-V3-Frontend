@@ -1,5 +1,5 @@
 {
-  "ADVANCED_RECEIVE" : "先进的接收",
+  "ADVANCED_RECEIVE" : "先进的接收xxx",
   "REGULAR_RECEIVE" : "定期接收",
   "UID": "钱包ID",
   "PASSWORD": "密码",
@@ -567,4 +567,4 @@
 HORIZE_APPROVE_THIS_DEVICE" : "该装置",
   "ACCEPT" : "接受",
   "REJECT" : "拒绝",
-  "BROWSER" : "浏�
+  "BROWSER" : "�
